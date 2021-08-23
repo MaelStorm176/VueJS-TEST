@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de VueJS</title>
+    <link rel="stylesheet" href="css/navbar.css">
+</head>
+<body>
+<nav id="navbar">
+    <ul>
+        <nav-bar
+                v-for="lien in links"
+                v-bind:link="lien"
+                v-bind:key="lien.href">
+        </nav-bar>
+    </ul>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script type="application/javascript" src="js/navbar_vue.js"></script>
+</body>
+</html>

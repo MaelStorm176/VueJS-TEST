@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de VueJS</title>
+    <link rel="stylesheet" href="css/grafikart.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+    <nav id="navbar" class="header">
+        <ul class="tabs-bar">
+            <nav-bar
+                    v-for="lien in links"
+                    v-bind:link="lien"
+                    v-bind:key="lien.href">
+            </nav-bar>
+        </ul>
+    </nav>
+
+    <main class=" formations container py5">
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Utilisation des {{}}</h2>
+                <div id="app" class="card__description">
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <h2 class="card__title">Title dynamique</h2>
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <div id="app-2">
+                  <span v-bind:title="message">
+                    Passez votre souris sur moi pendant quelques secondes
+                    pour voir mon titre lié dynamiquement !
+                  </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Utilisation de v-if </h2>
+                <div id="app-3">
+                    <p v-if="seen">Maintenant vous me voyez</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Todo liste - v-for</h2>
+                <div id="app-4" class="list-group">
+                        <a v-for="todo in todos">
+                            {{ todo.text }}
+                        </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Input dynamique</h2>
+                <div id="app-6">
+                    <p>{{ message }}</p>
+                    <input v-model="message">
+                </div>
+            </div>
+        </div>
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Todo liste - component</h2>
+                <div id="app-7" class="list-group">
+                    <!--
+                      Maintenant nous fournissons à chaque todo-item l'objet todo
+                      qu'il représente de manière à ce que son contenu puisse être dynamique.
+                      Nous avons également besoin de fournir à chaque composant une « clé »,
+                      mais nous expliquerons cela plus tard.
+                    -->
+                    <todo-item
+                            v-for="item in groceryList"
+                            v-bind:todo="item"
+                            v-bind:key="item.id"
+                    ></todo-item>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Generateur de prénoms</h2>
+                <div id="app-8">
+                    <div class="form-group grid">
+                        <div>
+                            <input v-bind:value="name" id="nom_genere" type="text" disabled>
+                        </div>
+                        <div>
+                            <button class="btn-secondary btn-block" v-on:click="random_name">Générer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Timer secondes</h2>
+                <div id="app-9" class="card__description">
+                    <p>Voici un compteur min:sec {{minutes}}:{{ seconds }}<p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card--stacked grid-1-3">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Alerte personnalisée</h2>
+                <div id="app-10">
+                    <div class="form-group" style="display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 10px;">
+                        <div class="grid-1-5">
+                            <label for="checkbox_alert">Veuillez cocher pour changer l'alert</label>
+                        </div>
+                        <div class="grid-5-6">
+                            <input v-model="success" id="checkbox_alert" type="checkbox" value="1" >
+                        </div>
+                    </div>
+                    <span v-bind:class="checked()">
+                        <strong>Ceci est une alerte</strong>
+                        <p>Alerte personnalisée qui change de class CSS en fonction du checkbox ci-dessus.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Appuyer sur espace</h2>
+                <div id="app-11" class="list-group" @keyup.space="reRoll" tabindex="0">
+                    <a v-for="fruit in fruits">
+                        {{ fruit }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card--stacked">
+            <div class="card__body stack">
+                <div class="card__pills">
+                    <button class="pill small pill-green">JS</button>
+                    <button class="pill small pill-green">HTML</button>
+                </div>
+                <h2 class="card__title">Directive perso</h2>
+                <div id="app-12" class="grid">
+                    <div class="form-group">
+                        <div class="grid2 ">
+                            <span>
+                                <label for="input_nom">Nom</label>
+                            </span>
+                            <div>
+                                <svg v-on:click="refresh" id="refresh_app12" style="float: right; cursor:pointer;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                    <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                    <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                                </svg>
+                            </div>
+
+                        </div>
+                        <input v-auto-complete:nom="noms" type="text" id="input_nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="input_prenom">Prénom</label>
+                        <input v-auto-complete:prenom="prenoms" type="text" id="input_prenom">
+                    </div>
+                    <div class="form-group">
+                        <label for="input_age">Age</label>
+                        <input v-auto-complete:age="age" type="number" id="input_age">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+
+
+<!-- Version production. celle-ci est optimisée pour la taille et la vitesse -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<!-- Minified version for production -->
+<script src="https://unpkg.com/random-fruits/dist/random-fruits.umd.min.js"></script>
+<script type="application/javascript" src="js/navbar_vue.js"></script>
+<script type="module" src="js/les_bases.js"></script>
+</html>
